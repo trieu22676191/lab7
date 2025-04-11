@@ -287,6 +287,24 @@
       "orderDate": "20/03/2023",
       "status": "new",
       "avatar": "/src/img/avt.png"
+    },
+    {
+      "id": "33",
+      "customerName": "SutuHo GauCop",
+      "company": "Garena",
+      "orderValue": "$500",
+      "orderDate": "11/04/2025",
+      "status": "new",
+      "avatar": "/src/img/avt6.png"
+    },
+    {
+      "id": "34",
+      "customerName": "SiuCR7 LeoM10",
+      "company": "King",
+      "orderValue": "$1000000000",
+      "orderDate": "11/04/2025",
+      "status": "completed",
+      "avatar": "/src/img/avt.png"
     }
   ]
 }

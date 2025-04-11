@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditCustomerModal from "./EditModal";
+import AddModal from "./AddUser";
 
 const DetailedReport = () => {
   const [customers, setCustomers] = useState([]);
@@ -7,6 +8,7 @@ const DetailedReport = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const itemsPerPage = 5;
 
@@ -68,6 +70,14 @@ const DetailedReport = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
+  };
+
+  const handleAdd = (newCustomer) => {
+    setCustomers([...customers, newCustomer]);
+  };
+
   if (loading) {
     return (
       <div className="container mt-4">
@@ -101,31 +111,41 @@ const DetailedReport = () => {
         />
         <h2 className="mb-0">Detailed Report</h2>
       </div>
-      <div className="d-flex justify-content-end mb-3">
-        <button
-          className="btn me-2"
-          style={{ border: "1px solid #FF69B4", color: "#FF69B4" }}
-        >
-          <img
-            src="/src/img/Move up.png"
-            alt="Import"
-            className="me-1"
-            style={{ width: "16px", height: "16px" }}
-          />
-          Import
-        </button>
+      <div className="d-flex justify-content-between mb-3">
         <button
           className="btn"
-          style={{ border: "1px solid #FF69B4", color: "#FF69B4" }}
+          style={{ backgroundColor: "#FF69B4", color: "white" }}
+          onClick={() => setShowAddModal(true)}
         >
-          <img
-            src="/src/img/Download.png"
-            alt="Export"
-            className="me-1"
-            style={{ width: "16px", height: "16px" }}
-          />
-          Export
+          <i className="bi bi-plus-circle me-1"></i>
+          Add Customer
         </button>
+        <div>
+          <button
+            className="btn me-2"
+            style={{ border: "1px solid #FF69B4", color: "#FF69B4" }}
+          >
+            <img
+              src="/src/img/Move up.png"
+              alt="Import"
+              className="me-1"
+              style={{ width: "16px", height: "16px" }}
+            />
+            Import
+          </button>
+          <button
+            className="btn"
+            style={{ border: "1px solid #FF69B4", color: "#FF69B4" }}
+          >
+            <img
+              src="/src/img/Download.png"
+              alt="Export"
+              className="me-1"
+              style={{ width: "16px", height: "16px" }}
+            />
+            Export
+          </button>
+        </div>
       </div>
       <table className="table table-hover">
         <thead className="thead-light">
@@ -240,6 +260,12 @@ const DetailedReport = () => {
         handleClose={handleCloseModal}
         customer={selectedCustomer}
         handleUpdate={handleUpdate}
+      />
+
+      <AddModal
+        show={showAddModal}
+        handleClose={handleCloseAddModal}
+        handleAdd={handleAdd}
       />
     </div>
   );
