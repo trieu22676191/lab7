@@ -3,11 +3,29 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const linkStyle = ({ isActive }) => {
+    return `text-${
+      isActive ? "white" : "dark"
+    } mb-2 d-flex align-items-center text-decoration-none p-2 rounded-pill ${
+      isActive ? "bg-pink" : "hover-bg-light"
+    }`;
+  };
+
   return (
     <div
       className="d-flex flex-column bg-light h-100"
       style={{ width: "280px", padding: "20px" }}
     >
+      <style>
+        {`
+          .bg-pink {
+            background-color: #FF69B4 !important;
+          }
+          .hover-bg-light:hover {
+            background-color: #f8f9fa;
+          }
+        `}
+      </style>
       <img
         src="/src/img/logo.png"
         alt="Logo"
@@ -15,14 +33,7 @@ const Sidebar = () => {
         style={{ width: "100px" }}
       />
       <Nav className="flex-column">
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/dashboard" className={linkStyle}>
           <img
             src="/src/img/dashboard.png"
             alt="Dashboard"
@@ -31,14 +42,7 @@ const Sidebar = () => {
           />
           Dashboard
         </NavLink>
-        <NavLink
-          to="/projects"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/projects" className={linkStyle}>
           <img
             src="/src/img/project.png"
             alt="Projects"
@@ -47,14 +51,7 @@ const Sidebar = () => {
           />
           Projects
         </NavLink>
-        <NavLink
-          to="/teams"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/teams" className={linkStyle}>
           <img
             src="/src/img/team.png"
             alt="Teams"
@@ -63,14 +60,7 @@ const Sidebar = () => {
           />
           Teams
         </NavLink>
-        <NavLink
-          to="/analytics"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/analytics" className={linkStyle}>
           <img
             src="/src/img/analytics.png"
             alt="Analytics"
@@ -79,14 +69,7 @@ const Sidebar = () => {
           />
           Analytics
         </NavLink>
-        <NavLink
-          to="/messages"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/messages" className={linkStyle}>
           <img
             src="/src/img/chat.png"
             alt="Messages"
@@ -95,14 +78,7 @@ const Sidebar = () => {
           />
           Messages
         </NavLink>
-        <NavLink
-          to="/integrations"
-          className={({ isActive }) =>
-            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
-              isActive ? "fw-bold" : ""
-            }`
-          }
-        >
+        <NavLink to="/integrations" className={linkStyle}>
           <img
             src="/src/img/integrations.png"
             alt="Integrations"
