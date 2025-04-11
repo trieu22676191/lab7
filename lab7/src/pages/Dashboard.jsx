@@ -4,10 +4,13 @@ import DetailedReport from "../components/DetailedReport";
 
 const Dashboard = () => {
   return (
-    <div>
-      <Overview />
-      <DetailedReport />
-      {/* Các nội dung khác của Dashboard */}
+    <div className="dashboard-container">
+      <div className="overview-section">
+        <Overview />
+      </div>
+      <div className="detailed-report-section">
+        <DetailedReport />
+      </div>
     </div>
   );
 };

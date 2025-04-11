@@ -1,17 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const DetailedReport = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Elizabeth Lee",
-      company: "AvatarSystems",
-      value: "$359",
-      date: "10/07/2023",
-      status: "New",
-      img: "/src/img/avt.png",
-    },
-  ];
+  const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/customers");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        // Đảm bảo dữ liệu có đúng định dạng theo data.json
+        const formattedData = data.map((customer) => ({
+          id: customer.id,
+          customerName: customer.customerName || "Unknown",
+          company: customer.company || "Unknown",
+          orderValue: customer.orderValue || "$0",
+          orderDate: customer.orderDate || new Date().toLocaleDateString(),
+          status: customer.status?.toLowerCase() || "new",
+          avatar: customer.avatar || "/src/img/avt.png",
+        }));
+        setCustomers(formattedData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+        setError("Failed to load customers data");
+        setLoading(false);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
+
+  // Tính toán dữ liệu cho trang hiện tại
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = customers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(customers.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (loading) {
+    return (
+      <div className="container mt-4">
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mt-4">
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-4">
@@ -64,34 +120,37 @@ const DetailedReport = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
+          {currentItems.map((customer) => (
+            <tr key={customer.id}>
               <td>
                 <input type="checkbox" />
               </td>
               <td>
                 <img
-                  src={product.img}
-                  alt={product.name}
+                  src={customer.avatar}
+                  alt={customer.customerName}
                   className="rounded-circle me-2"
                   style={{ width: "30px" }}
                 />
-                {product.name}
+                {customer.customerName}
               </td>
-              <td>{product.company}</td>
-              <td>{product.value}</td>
-              <td>{product.date}</td>
+              <td>{customer.company}</td>
+              <td>{customer.orderValue}</td>
+              <td>{customer.orderDate}</td>
               <td>
                 <span
+                  className="badge"
                   style={{
-                    ...(product.status === "New"
+                    ...(customer.status === "new"
                       ? { backgroundColor: "#E8F7FF", color: "#0095FF" }
-                      : product.status === "In-progress"
+                      : customer.status === "in-progress"
                       ? { backgroundColor: "#FFF6E9", color: "#FF9900" }
                       : { backgroundColor: "#E9FBF0", color: "#05CD99" }),
+                    padding: "5px 10px",
+                    borderRadius: "4px",
                   }}
                 >
-                  {product.status}
+                  {customer.status}
                 </span>
               </td>
             </tr>
@@ -99,34 +158,44 @@ const DetailedReport = () => {
         </tbody>
       </table>
       <div className="d-flex justify-content-between align-items-center">
-        <span>1 results</span>
+        <span>{customers.length} results</span>
         <nav>
           <ul className="pagination mb-0">
             <li className="page-item">
               <button
                 className="page-link border-0"
                 style={{ color: "#8E95A9" }}
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
               >
                 <i className="bi bi-chevron-left"></i>
               </button>
             </li>
-            <li className="page-item">
-              <button
-                className="page-link border-0"
-                style={{
-                  backgroundColor: "#FF69B4",
-                  color: "white",
-                  borderRadius: "8px",
-                }}
-              >
-                1
-              </button>
-            </li>
-
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+              (pageNumber) => (
+                <li key={pageNumber} className="page-item">
+                  <button
+                    className="page-link border-0"
+                    style={{
+                      backgroundColor:
+                        currentPage === pageNumber ? "#FF69B4" : "transparent",
+                      color: currentPage === pageNumber ? "white" : "#8E95A9",
+                      borderRadius: "8px",
+                      margin: "0 2px",
+                    }}
+                    onClick={() => handlePageChange(pageNumber)}
+                  >
+                    {pageNumber}
+                  </button>
+                </li>
+              )
+            )}
             <li className="page-item">
               <button
                 className="page-link border-0"
                 style={{ color: "#8E95A9" }}
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
               >
                 <i className="bi bi-chevron-right"></i>
               </button>

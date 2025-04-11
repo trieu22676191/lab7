@@ -4,8 +4,8 @@ import { Nav } from "react-bootstrap";
 const Sidebar = () => {
   return (
     <div
-      className="d-flex flex-column p-3 bg-light"
-      style={{ width: "250px", height: "100vh" }}
+      className="d-flex flex-column bg-light h-100"
+      style={{ width: "280px", padding: "20px" }}
     >
       <img
         src="/src/img/logo.png"
@@ -14,7 +14,7 @@ const Sidebar = () => {
         style={{ width: "100px" }}
       />
       <Nav className="flex-column">
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/dashboard.png"
             alt="Dashboard"
@@ -23,7 +23,7 @@ const Sidebar = () => {
           />
           Dashboard
         </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/project.png"
             alt="Projects"
@@ -32,7 +32,7 @@ const Sidebar = () => {
           />
           Projects
         </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/team.png"
             alt="Teams"
@@ -41,7 +41,7 @@ const Sidebar = () => {
           />
           Teams
         </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/analytics.png"
             alt="Analytics"
@@ -50,7 +50,7 @@ const Sidebar = () => {
           />
           Analytics
         </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/chat.png"
             alt="Messages"
@@ -59,7 +59,7 @@ const Sidebar = () => {
           />
           Messages
         </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2">
+        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
           <img
             src="/src/img/integrations.png"
             alt="Integrations"
@@ -71,7 +71,7 @@ const Sidebar = () => {
       </Nav>
       <div className="mt-auto p-3 bg-white rounded shadow-sm">
         <img src="/src/img/Group.png" alt="Update" className="img-fluid mb-2" />
-        <h6 className="text-dark, text-center">V2.0 is available</h6>
+        <h6 className="text-dark text-center">V2.0 is available</h6>
         <button className="btn btn-outline-primary w-100">Try now</button>
       </div>
     </div>
