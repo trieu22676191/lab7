@@ -5,8 +5,8 @@
       "customerName": "Elizabeth Lee",
       "company": "AvatarSystems",
       "orderValue": "$360",
-      "orderDate": "10/07/2023",
-      "status": "new",
+      "orderDate": "08/12/2004",
+      "status": "in-progress",
       "avatar": "/src/img/avt6.png"
     },
     {
@@ -41,8 +41,8 @@
       "customerName": "Ryan Young",
       "company": "DataStream Inc.",
       "orderValue": "$769",
-      "orderDate": "01/05/2023",
-      "status": "completed",
+      "orderDate": "10/10/2000",
+      "status": "new",
       "avatar": "/src/img/avt1.png"
     },
     {
@@ -287,14 +287,6 @@
       "orderDate": "20/03/2023",
       "status": "new",
       "avatar": "/src/img/avt.png"
-    },
-    {
-      "customerName": "Y 1010",
-      "company": "VN Gaming",
-      "orderValue": "$100",
-      "orderDate": "20/03/2023",
-      "status": "in-progress",
-      "id": "e3dc"
     }
   ]
 }

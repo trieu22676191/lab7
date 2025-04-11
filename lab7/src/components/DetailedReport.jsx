@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import EditCustomerModal from "./EditModal";
 
 const DetailedReport = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -36,6 +39,24 @@ const DetailedReport = () => {
 
     fetchCustomers();
   }, []);
+
+  const handleEdit = (customer) => {
+    setSelectedCustomer(customer);
+    setShowEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowEditModal(false);
+    setSelectedCustomer(null);
+  };
+
+  const handleUpdate = (updatedCustomer) => {
+    setCustomers(
+      customers.map((customer) =>
+        customer.id === updatedCustomer.id ? updatedCustomer : customer
+      )
+    );
+  };
 
   // Tính toán dữ liệu cho trang hiện tại
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -117,6 +138,7 @@ const DetailedReport = () => {
             <th scope="col">Order Value</th>
             <th scope="col">Order Date</th>
             <th scope="col">Status</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -152,6 +174,15 @@ const DetailedReport = () => {
                 >
                   {customer.status}
                 </span>
+              </td>
+              <td>
+                <button
+                  className="btn btn-sm"
+                  onClick={() => handleEdit(customer)}
+                  style={{ color: "#FF69B4" }}
+                >
+                  <i className="bi bi-pencil"></i>
+                </button>
               </td>
             </tr>
           ))}
@@ -203,6 +234,13 @@ const DetailedReport = () => {
           </ul>
         </nav>
       </div>
+
+      <EditCustomerModal
+        show={showEditModal}
+        handleClose={handleCloseModal}
+        customer={selectedCustomer}
+        handleUpdate={handleUpdate}
+      />
     </div>
   );
 };
