@@ -1,41 +1,22 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import Dashboard from "../pages/Dashboard";
 
 const Layout = () => {
   return (
-    <Container fluid className="p-2 min-vh-100">
-      <Row className="g-2">
-        {/* Header */}
-        <Col xs={12} className="bg-white p-3 text-center shadow-sm">
-          <h2 className="m-0">My Header</h2>
+    <Container fluid className="p-0 min-vh-100 w-100">
+      <Row className="g-0 w-100">
+        {/* Sidebar */}
+        <Col md={3} className="bg-light p-0">
+          <Sidebar />
         </Col>
 
         {/* Main Content */}
-        <Row className="g-2 flex-grow-1">
-          {/* Menu */}
-          <Col xs={12} md={3} className="bg-white p-3 shadow-sm">
-            <div className="d-flex flex-column">
-              <a href="#" className="mb-2 text-decoration-none">
-                Link 1
-              </a>
-              <a href="#" className="mb-2 text-decoration-none">
-                Link 2
-              </a>
-              <a href="#" className="mb-2 text-decoration-none">
-                Link 3
-              </a>
-            </div>
-          </Col>
-
-          {/* Content */}
-          <Col xs={12} md={9} className="bg-white p-3 shadow-sm">
-            <h3 className="text-primary">Lorem Ipsum</h3>
-          </Col>
-        </Row>
-
-        {/* Footer */}
-        <Col xs={12} className="bg-white p-3 text-center shadow-sm">
-          <h4 className="m-0">Footer</h4>
+        <Col md={9} className="d-flex flex-column p-0">
+          <Header />
+          <Dashboard />
         </Col>
       </Row>
     </Container>
