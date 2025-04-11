@@ -101,3 +101,11 @@ html, body {
 .read-the-docs {
   color: #888;
 }
+
+.bg-pink {
+  background-color: #fff0f6 !important;
+}
+
+.border-pink {
+  border-color: #FF69B4 !important;
+}

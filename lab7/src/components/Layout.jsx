@@ -1,8 +1,13 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Dashboard from "../pages/Dashboard";
+import Projects from "../pages/Projects";
+import Teams from "../pages/Teams";
+import Analytics from "../pages/Analytics";
+import Messages from "../pages/Messages";
+import Integrations from "../pages/Integrations";
 
 const Layout = () => {
   return (
@@ -30,7 +35,15 @@ const Layout = () => {
       >
         <Header />
         <div style={{ height: "calc(100vh - 70px)", overflowY: "auto" }}>
-          <Dashboard />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/integrations" element={<Integrations />} />
+          </Routes>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -14,7 +15,14 @@ const Sidebar = () => {
         style={{ width: "100px" }}
       />
       <Nav className="flex-column">
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/dashboard.png"
             alt="Dashboard"
@@ -22,8 +30,15 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Dashboard
-        </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        </NavLink>
+        <NavLink
+          to="/projects"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/project.png"
             alt="Projects"
@@ -31,8 +46,15 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Projects
-        </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        </NavLink>
+        <NavLink
+          to="/teams"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/team.png"
             alt="Teams"
@@ -40,8 +62,15 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Teams
-        </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        </NavLink>
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/analytics.png"
             alt="Analytics"
@@ -49,8 +78,15 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Analytics
-        </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        </NavLink>
+        <NavLink
+          to="/messages"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/chat.png"
             alt="Messages"
@@ -58,8 +94,15 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Messages
-        </Nav.Link>
-        <Nav.Link href="#" className="text-dark mb-2 d-flex align-items-center">
+        </NavLink>
+        <NavLink
+          to="/integrations"
+          className={({ isActive }) =>
+            `text-dark mb-2 d-flex align-items-center text-decoration-none ${
+              isActive ? "fw-bold" : ""
+            }`
+          }
+        >
           <img
             src="/src/img/integrations.png"
             alt="Integrations"
@@ -67,7 +110,7 @@ const Sidebar = () => {
             style={{ width: "20px" }}
           />
           Integrations
-        </Nav.Link>
+        </NavLink>
       </Nav>
       <div className="mt-auto p-3 bg-white rounded shadow-sm">
         <img src="/src/img/Group.png" alt="Update" className="img-fluid mb-2" />
